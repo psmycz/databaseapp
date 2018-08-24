@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dział Utrzymania Ruchu</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+
+<!--Pasek nawigacji-->
+<th:block th:include="layout/navbar"></th:block>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <form  action="#" th:action="@{/}" method="post" class="form-inline">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" type="text" th:name="czas_pracy" placeholder="Czas pracy lampy"/>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Szukaj</button>
+                </fieldset><!--co to fieldset-->
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:include="layout/bootstrap"></th:block>
+</body>
+</html>

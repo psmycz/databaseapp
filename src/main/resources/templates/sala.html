@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sala</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+
+<body>
+<!--Pasek nawigacji-->
+<th:block th:include="layout/navbar"></th:block>
+
+
+<div class="container ">
+    <div class="row">
+        <h1>
+            <strong>
+                <th th:text="${sala.budynek} + '    '"></th>
+                <th th:text="${sala.numer} + ' - ' "></th>
+                <th th:text="${sala.opis} + '    '"></th>
+            </strong>
+        </h1>
+    </div>
+
+    <hr>
+
+    <!-------------------------------           AUDIO           ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+               Audio:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/audioAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 30%">Typ</th>
+                        <th style="width: 50%">Opis</th>
+                        <th style="width: 5%">Edytuj</th>
+                        <th style="width: 5%">Usuń</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="audio : ${audioList}">
+                        <td th:text="${audio.audioId}"></td>
+                        <td th:text="${audio.typ}"></td>
+                        <td th:text="${audio.opis}"></td>
+                        <td><a th:href="@{/sala/{salaId}/audioModify/{audioId}(salaId = ${sala.salaId}, audioId = ${audio.audioId})}">
+                            <button type="button" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button></a></td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal1' + ${audio.audioId}">
+                                <span class="glyphicon glyphicon-trash"></span></button>
+                            <div class="modal fade" th:attr="id = 'exampleModal1' + ${audio.audioId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel1">Potwierdzenie operacji</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                            <h5 th:text="${audio.typ}" ></h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                            <a th:href="@{/sala/{salaId}/audioDelete/{audioId}(salaId = ${sala.salaId}, audioId = ${audio.audioId})}" class="btn btn-danger">Tak</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------        AUTOMATYKA         ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Automatyka:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/automatykaAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">ID</th>
+                <th style="width: 30%">Nazwa</th>
+                <th style="width: 50%">Opis</th>
+                <th style="width: 5%;">Edytuj</th>
+                <th style="width: 5%;">Usuń</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="automatyka : ${automatykaList}">
+                <td th:text="${automatyka.automatykaId}"></td>
+                <td th:text="${automatyka.nazwa}"></td>
+                <td th:text="${automatyka.opis}"></td>
+                <td><a th:href="@{/sala/{salaId}/automatykaModify/{automatykaId}(salaId = ${sala.salaId}, automatykaId = ${automatyka.automatykaId})}">
+                    <button type="button" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button></a></td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal2' + ${automatyka.automatykaId}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <div class="modal fade" th:attr="id = 'exampleModal2' + ${automatyka.automatykaId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel2">Potwierdzenie operacji</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                    <h5 th:text="${automatyka.nazwa}" ></h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                    <a th:href="@{/sala/{salaId}/automatykaDelete/{automatykaId}(salaId = ${sala.salaId}, automatykaId = ${automatyka.automatykaId})}" class="btn btn-danger">Tak</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <hr>
+
+    <!-------------------------------           EKRAN            ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Ekran:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/ekranAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10%">ID</th>
+                    <th style="width: 15%">Model</th>
+                    <th style="width: 15%">Wymiary</th>
+                    <th style="width: 10%;">Sterowanie</th>
+                    <th style="width: 40%;">Opis</th>
+                    <th style="width: 5%;">Edytuj</th>
+                    <th style="width: 5%;">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ekran : ${ekranList}">
+                    <td th:text="${ekran.ekranId}"></td>
+                    <td th:text="${ekran.model}"></td>
+                    <td th:text="${ekran.wymiary}"></td>
+                    <td th:text="${ekran.sterowanie}"></td>
+                    <td th:text="${ekran.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/ekranModify/{ekranId}(salaId = ${sala.salaId}, ekranId = ${ekran.ekranId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal3' + ${ekran.ekranId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal3' + ${ekran.ekranId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel3">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${ekran.model}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/ekranDelete/{ekranId}(salaId = ${sala.salaId}, ekranId = ${ekran.ekranId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------          NAPRAWA           ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Naprawa:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/naprawaAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">ID</th>
+                <th style="width: 30%">Data naprawy</th>
+                <th style="width: 50%">opis</th>
+                <th style="width: 5%;">Edytuj</th>
+                <th style="width: 5%;">Usuń</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="naprawa : ${naprawaList}">
+                <td th:text="${naprawa.naprawaId}"></td>
+                <td th:text="${naprawa.dataNaprawy}"></td>
+                <td th:text="${naprawa.opis}"></td>
+                <td><a th:href="@{/sala/{salaId}/naprawaModify/{naprawaId}(salaId = ${sala.salaId}, naprawaId = ${naprawa.naprawaId})}">
+                    <button type="button" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button></a></td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal4' + ${naprawa.naprawaId}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <div class="modal fade" th:attr="id = 'exampleModal4' + ${naprawa.naprawaId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel4">Potwierdzenie operacji</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                    <h5 th:text="${naprawa.dataNaprawy}" ></h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                    <a th:href="@{/sala/{salaId}/naprawaDelete/{naprawaId}(salaId = ${sala.salaId}, naprawaId = ${naprawa.naprawaId})}" class="btn btn-danger">Tak</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------         PROJEKTOR          ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Projektor:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/projektorAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">ID</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Numer seryjny</th>
+                <th style="width: 10%">Adres IP</th>
+                <th style="width: 15%">Adres MAC</th>
+                <th style="width: 10%">Wersja Oprogr</th>
+                <th style="width: 15%">Opis</th>
+                <th style="width: 5%;">Edytuj</th>
+                <th style="width: 5%;">Usuń</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="projektor : ${projektorList}">
+                <td th:text="${projektor.projektorId}"></td>
+                <td th:text="${projektor.model}"></td>
+                <td th:text="${projektor.numerSeryjny}"></td>
+                <td th:text="${projektor.adresIp}"></td>
+                <td th:text="${projektor.adresMac}"></td>
+                <td th:text="${projektor.wersjaOprogr}"></td>
+                <td th:text="${projektor.opis}"></td>
+                <td><a th:href="@{/sala/{salaId}/projektorModify/{projektorId}(salaId = ${sala.salaId}, projektorId = ${projektor.projektorId})}">
+                    <button type="button" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button></a></td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal5' + ${projektor.projektorId}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <div class="modal fade" th:attr="id = 'exampleModal5' + ${projektor.projektorId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel5">Potwierdzenie operacji</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                    <a th:href="@{/sala/{salaId}/projektorDelete/{projektorId}(salaId = ${sala.salaId}, projektorId = ${projektor.projektorId})}" class="btn btn-danger">Tak</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------         PRZYLACZE          ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Przyłącze:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/przylaczeAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10%">ID</th>
+                    <th  style="width: 20%">Nazwa</th>
+                    <th  style="width: 60%">Opis</th>
+                    <th  style="width: 5%">Dodaj</th>
+                    <th  style="width: 5%">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="przylacze : ${przylaczeList}">
+                    <td th:text="${przylacze.przylaczeId}"></td>
+                    <td th:text="${przylacze.nazwa}"></td>
+                    <td th:text="${przylacze.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/przylaczeModify/{przylaczeId}(salaId = ${sala.salaId}, przylaczeId = ${przylacze.przylaczeId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span></button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal6' + ${przylacze.przylaczeId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal6' + ${przylacze.przylaczeId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel6">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${przylacze.nazwa}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/przylaczeDelete/{przylaczeId}(salaId = ${sala.salaId}, przylaczeId = ${przylacze.przylaczeId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+
+    <hr>
+
+    <!-------------------------------         TABLICA            ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Tablica:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/tablicaAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10%">ID</th>
+                    <th  style="width: 10%">Model</th>
+                    <th  style="width: 20%">Wymiary</th>
+                    <th  style="width: 50%">Opis</th>
+                    <th  style="width: 5%">Dodaj</th>
+                    <th  style="width: 5%">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tablica : ${tablicaList}">
+                    <td th:text="${tablica.tablicaId}"></td>
+                    <td th:text="${tablica.model}"></td>
+                    <td th:text="${tablica.wymiary}"></td>
+                    <td th:text="${tablica.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/tablicaModify/{tablicaId}(salaId = ${sala.salaId}, tablicaId = ${tablica.tablicaId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal7' + ${tablica.tablicaId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal7' + ${tablica.tablicaId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel7" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel7">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${tablica.model}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/tablicaDelete/{tablicaId}(salaId = ${sala.salaId}, tablicaId = ${tablica.tablicaId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------        VISUALIZER          ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Visualizer:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/visualizerAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10%">ID</th>
+                    <th  style="width: 20%">Model</th>
+                    <th  style="width: 60%">Opis</th>
+                    <th  style="width: 5%">Dodaj</th>
+                    <th  style="width: 5%">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="visualizer : ${visualizerList}">
+                    <td th:text="${visualizer.visualizerId}"></td>
+                    <td th:text="${visualizer.model}"></td>
+                    <td th:text="${visualizer.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/visualizerModify/{visualizerId}(salaId = ${sala.salaId}, visualizerId = ${visualizer.visualizerId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal8' + ${visualizer.visualizerId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal8' + ${visualizer.visualizerId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel8" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel8">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${visualizer.model}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/visualizerDelete/{visualizerId}(salaId = ${sala.salaId}, visualizerId = ${visualizer.visualizerId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------        WYPOSAZENIE         ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Wyposażenie:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/wyposazenieAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10%">ID</th>
+                    <th  style="width: 10%">Rolety</th>
+                    <th  style="width: 10%">Oświetlenie</th>
+                    <th  style="width: 10%">Pilot</th>
+                    <th  style="width: 20%">Inne</th>
+                    <th  style="width: 30%">Opis</th>
+                    <th  style="width: 5%">Dodaj</th>
+                    <th  style="width: 5%">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <td th:text="${wyposazenie.wyposazenieId}"></td>
+                    <td th:text="${wyposazenie.rolety}"></td>
+                    <td th:text="${wyposazenie.oswietlenie}"></td>
+                    <td th:text="${wyposazenie.pilot}"></td>
+                    <td th:text="${wyposazenie.inne}"></td>
+                    <td th:text="${wyposazenie.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/wyposazenieModify/{wyposazenieId}(salaId = ${sala.salaId}, wyposazenieId = ${wyposazenie.wyposazenieId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal9' + ${wyposazenie.wyposazenieId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal9' + ${wyposazenie.wyposazenieId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel9" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel9">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${wyposazenie.rolety}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/wyposazenieDelete/{wyposazenieId}(salaId = ${sala.salaId}, wyposazenieId = ${wyposazenie.wyposazenieId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <hr>
+
+    <!-------------------------------          ZLACZE            ------------------------------->
+
+    <div class="row form-group">
+        <h2>
+            <div class="col-lg-11 col-md-11">
+                Złącze:
+            </div>
+            <div class="col-lg-1 col-md-1">
+
+                <form action="#" th:action="@{/sala/{salaId}/zlaczeAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </form>
+
+            </div>
+        </h2>
+    </div>
+
+    <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th  style="width: 10%">ID</th>
+                    <th  style="width: 20%">Nazwa</th>
+                    <th  style="width: 10%">Dlugosc</th>
+                    <th  style="width: 50%">Opis</th>
+                    <th  style="width: 5%">Dodaj</th>
+                    <th  style="width: 5%">Usuń</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="zlacze : ${zlaczeList}">
+                    <td th:text="${zlacze.zlaczeId}"></td>
+                    <td th:text="${zlacze.nazwa}"></td>
+                    <td th:text="${zlacze.dlugosc}"></td>
+                    <td th:text="${zlacze.opis}"></td>
+                    <td><a th:href="@{/sala/{salaId}/zlaczeModify/{zlaczeId}(salaId = ${sala.salaId}, zlaczeId = ${zlacze.zlaczeId})}">
+                        <button type="button" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button></a></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#exampleModal10' + ${zlacze.zlaczeId}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <div class="modal fade" th:attr="id = 'exampleModal10' + ${zlacze.zlaczeId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel10" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel10">Potwierdzenie operacji</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <h5 th:text="${zlacze.nazwa}" ></h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                        <a th:href="@{/sala/{salaId}/zlaczeDelete/{zlaczeId}(salaId = ${sala.salaId}, zlaczeId = ${zlacze.zlaczeId})}" class="btn btn-danger">Tak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <hr>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:include="layout/bootstrap"></th:block>
+</body>
+</html>
