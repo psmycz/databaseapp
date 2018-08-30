@@ -1,5 +1,7 @@
 package DUR.databaseapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -12,7 +14,8 @@ public class Naprawa {
     private int naprawaId;
 
     @NotNull
-    private Date dataNaprawy;
+    @DateTimeFormat (pattern = "yyyy-mm-dd")
+    private java.sql.Date dataNaprawy;
     private String opis;
 
     @ManyToOne(fetch = FetchType.LAZY,
@@ -28,7 +31,7 @@ public class Naprawa {
     }
 
     public Naprawa(Date dataNaprawy, String opis) {
-        this.dataNaprawy = dataNaprawy;
+        this.dataNaprawy = (java.sql.Date) dataNaprawy;
         this.opis = opis;
     }
 
@@ -45,7 +48,7 @@ public class Naprawa {
     }
 
     public void setDataNaprawy(Date dataNaprawy) {
-        this.dataNaprawy = dataNaprawy;
+        this.dataNaprawy = (java.sql.Date) dataNaprawy;
     }
 
     public String getOpis() {

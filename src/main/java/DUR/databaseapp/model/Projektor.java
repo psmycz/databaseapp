@@ -12,7 +12,6 @@ public class Projektor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int projektorId;
 
-    @NotNull
     private String model;
     @NotNull
     private String numerSeryjny;

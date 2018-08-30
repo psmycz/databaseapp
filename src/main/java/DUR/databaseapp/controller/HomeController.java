@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -71,9 +72,27 @@ public class HomeController {
         List<Przylacze> przylaczeList = przylaczeService.findAllBySalaId(salaId);
         List<Tablica> tablicaList = tablicaService.findAllBySalaId(salaId);
         List<Visualizer> visualizerList = visualizerService.findAllBySalaId(salaId);
+
+        //Utworzenie listy lamp dla danej sali
+        int[] tmp;
+        int listSize = projektorList.size();
+        tmp = new int[listSize];
+        int i =0;
+        for (Projektor p: projektorList ) { //lista ID projektorów dla danej sali
+            tmp[i] = p.getProjektorId();
+            i++;
+        }
+        List<Lampa> lampaList = new ArrayList<Lampa>(); //lista lamp dla projektorów w danej sali bazując na ich ID
+        for(i = 0; i < listSize; i++)
+            lampaList.add(lampaService.findFirstByProjektorIdAndSprawna(tmp[i],true));
+
+        //------------------------------------
+
+
         List<Zlacze> zlaczeList = zlaczeService.findAllBySalaId(salaId);
         Wyposazenie wyposazenie = wyposazenieService.findBySalaId(salaId);
         modelAndView.addObject("audioList", audioList);
+        modelAndView.addObject("lampaList", lampaList);
         modelAndView.addObject("automatykaList",automatykaList);
         modelAndView.addObject("ekranList",ekranList);
         modelAndView.addObject("naprawaList",naprawaList);

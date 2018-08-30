@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dodaj ekran</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+
+<body>
+
+<!--Pasek nawigacji-->
+<th:block th:include="layout/navbar"></th:block>
+
+<div class="container">
+    <h4 class="float-left mt-2">Ekran : Dodaj</h4>
+    <div class="clearfix"></div>
+    <form th:action="@{/sala/{salaId}/ekranAdd(salaId = ${salaId})}" th:object="${ekran}" action="#" method="post">
+
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+            <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
+        </div>
+
+        <input type="hidden" th:field="*{ekranId}" th:class="${'form-control' + (#fields.hasErrors('ekranId') ? ' is-invalid' : '')}"/>
+        <div class="form-group">
+
+            <label for="model">Model</label>
+            <input type="text" th:field="*{model}" th:class="${'form-control' + (#fields.hasErrors('model') ? ' is-invalid' : '')}">
+        </div>
+        <div class="form-group">
+
+            <label for="wymiary">Wymiary</label>
+            <input type="text" th:field="*{wymiary}" th:class="${'form-control' + (#fields.hasErrors('wymiary') ? ' is-invalid' : '')}">
+        </div>
+        <div class="form-group">
+
+            <label for="sterowanie">Sterowanie</label>
+            <input type="text" th:field="*{sterowanie}" th:class="${'form-control' + (#fields.hasErrors('sterowanie') ? ' is-invalid' : '')}">
+        </div>
+        <div class="form-group">
+            <label for="opis">Opis</label>
+            <textarea th:field="*{opis}" th:class="${'form-control' + (#fields.hasErrors('opis') ? ' is-invalid' : '')}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Potwierdz</button>
+    </form>
+</div>
+<th:block th:include="layout/bootstrap"></th:block>
+</body>
+</html>

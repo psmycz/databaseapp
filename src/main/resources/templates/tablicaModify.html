@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Audio Modify</title>
+    <title>Edytuj tablicę</title>
     <th:block th:include="layout/header"></th:block>
 </head>
 
@@ -13,19 +13,24 @@
 <th:block th:include="layout/navbar"></th:block>
 
 <div class="container">
-    <h4 class="float-left mt-2">Audio : Edytuj</h4>
+    <h4 class="float-left mt-2">Tablica :  Edytuj</h4>
     <div class="clearfix"></div>
-    <form th:action="@{/sala/{salaId}/audioModify (salaId = ${salaId})}" th:object="${audio}" action="#" method="post">
+    <form th:action="@{/sala/{salaId}/tablicaAdd(salaId = ${salaId})}" th:object="${tablica}" action="#" method="post">
 
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
             <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
         </div>
 
-        <input type="hidden" th:field="*{audioId}" th:class="${'form-control' + (#fields.hasErrors('audioId') ? ' is-invalid' : '')}"/>
+        <input type="hidden" th:field="*{tablicaId}" th:class="${'form-control' + (#fields.hasErrors('tablicaId') ? ' is-invalid' : '')}"/>
         <div class="form-group">
 
-            <label for="typ">Typ</label>
-            <input type="text" th:field="*{typ}" th:class="${'form-control' + (#fields.hasErrors('typ') ? ' is-invalid' : '')}">
+            <label for="model">Model</label>
+            <input type="text" th:field="*{model}" th:class="${'form-control' + (#fields.hasErrors('model') ? ' is-invalid' : '')}">
+        </div>
+        <div class="form-group">
+
+            <label for="wymiary">Wymiary</label>
+            <input type="text" th:field="*{wymiary}" th:class="${'form-control' + (#fields.hasErrors('wymiary') ? ' is-invalid' : '')}">
         </div>
         <div class="form-group">
             <label for="opis">Opis</label>

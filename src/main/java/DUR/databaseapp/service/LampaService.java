@@ -25,7 +25,6 @@ public class LampaService {
 
     public List <Lampa> findAllByCzasPracyLessThan(int czasPracy){return lampaRepository.findAllByCzasPracyLessThan(czasPracy);}
 
-    public List <Lampa> findAllBySprawna(Boolean sprawna){return lampaRepository.findAllBySprawna(sprawna);}
 
     public List <Lampa> findAllByProjektorId(int projektorId){return lampaRepository.findAllByProjektor(projektorRepository.getOne(projektorId));}
 
@@ -33,8 +32,8 @@ public class LampaService {
 
     public List <Lampa> findAllByDataKontroliLessThan(Date dataKontroli){return lampaRepository.findAllByDataKontroliLessThan(dataKontroli);}
 
-    public List <Lampa> findAllByProjektorIdAndSprawna(int projektorId, Boolean sprawna){
-        return lampaRepository.findAllByProjektorAndSprawna(projektorRepository.getOne(projektorId),sprawna);
+    public Lampa findFirstByProjektorIdAndSprawna(int projektorId, Boolean sprawna){
+        return lampaRepository.findFirstByProjektorAndSprawna(projektorRepository.getOne(projektorId),sprawna);
     }
 
     public List <Lampa> findAll(){return lampaRepository.findAll();}
@@ -45,5 +44,4 @@ public class LampaService {
     public void deleteLampa(Lampa lampa){
         lampaRepository.delete(lampa);
     }
-
 }

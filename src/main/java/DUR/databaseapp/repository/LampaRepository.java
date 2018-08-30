@@ -12,9 +12,8 @@ import java.util.List;
 public interface LampaRepository extends JpaRepository <Lampa, Integer> {
     List<Lampa> findAllByCzasPracyGreaterThan(int czasPracy);
     List<Lampa> findAllByCzasPracyLessThan(int czasPracy);
-    List<Lampa> findAllBySprawna(Boolean sprawna);
     List<Lampa> findAllByProjektor(Projektor projektor);
     List<Lampa> findAllByDataKontroliGreaterThan(Date dataKontroli);
     List<Lampa> findAllByDataKontroliLessThan(Date dataKontroli);
-    List<Lampa> findAllByProjektorAndSprawna(Projektor projektor, Boolean sprawna);
+    Lampa findFirstByProjektorAndSprawna(Projektor projektor, Boolean sprawna);
 }

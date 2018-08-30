@@ -1,5 +1,6 @@
 package DUR.databaseapp.repository;
 
+import DUR.databaseapp.model.Lampa;
 import DUR.databaseapp.model.Projektor;
 import DUR.databaseapp.model.Sala;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -12,7 +12,7 @@ insert into przylacze (sala_id, nazwa, opis) values (1,'makbert','takie o');
 insert into przylacze (sala_id, nazwa, opis) values (3,'jakies przylacze','koment');
 insert into przylacze (sala_id, nazwa) values (6,'makbert');
 
-insert into naprawa (sala_id, data_naprawy, opis) values (1,SYSDATE(),'no jeblo sie cos ^^');
+insert into naprawa (sala_id, data_naprawy, opis) values (1,'2012-12-12','no jeblo sie cos ^^');
 insert into naprawa (sala_id, data_naprawy) values (1,SYSDATE());
 insert into naprawa (sala_id, data_naprawy, opis) values (4,SYSDATE(),'^^');
 

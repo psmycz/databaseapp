@@ -28,7 +28,7 @@
             <input type="text" th:field="*{typ}" th:class="${'form-control' + (#fields.hasErrors('typ') ? ' is-invalid' : '')}">
         </div>
         <div class="form-group">
-            <label for="opis">opis</label>
+            <label for="opis">Opis</label>
             <textarea th:field="*{opis}" th:class="${'form-control' + (#fields.hasErrors('opis') ? ' is-invalid' : '')}"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Potwierdz</button>

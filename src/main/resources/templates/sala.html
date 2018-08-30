@@ -75,7 +75,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                            <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                             <h5 th:text="${audio.typ}" ></h5>
                                         </div>
                                         <div class="modal-footer">
@@ -144,7 +144,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                     <h5 th:text="${automatyka.nazwa}" ></h5>
                                 </div>
                                 <div class="modal-footer">
@@ -219,7 +219,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${ekran.model}" ></h5>
                                     </div>
                                     <div class="modal-footer">
@@ -288,7 +288,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                     <h5 th:text="${naprawa.dataNaprawy}" ></h5>
                                 </div>
                                 <div class="modal-footer">
@@ -329,8 +329,8 @@
             <tr>
                 <th style="width: 10%">ID</th>
                 <th style="width: 15%">Model</th>
-                <th style="width: 15%">Numer seryjny</th>
-                <th style="width: 10%">Adres IP</th>
+                <th style="width: 10%">Numer seryjny</th>
+                <th style="width: 15%">Adres IP</th>
                 <th style="width: 15%">Adres MAC</th>
                 <th style="width: 10%">Wersja Oprogr</th>
                 <th style="width: 15%">Opis</th>
@@ -339,7 +339,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="projektor : ${projektorList}">
+            <tr th:each="projektor : ${projektorList}"> <!--Dopisz wyświetlanie lamp, kontroler już zrobiony?-->
                 <td th:text="${projektor.projektorId}"></td>
                 <td th:text="${projektor.model}"></td>
                 <td th:text="${projektor.numerSeryjny}"></td>
@@ -365,7 +365,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                    <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
@@ -432,7 +432,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${przylacze.nazwa}" ></h5>
                                     </div>
                                     <div class="modal-footer">
@@ -504,7 +504,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${tablica.model}" ></h5>
                                     </div>
                                     <div class="modal-footer">
@@ -573,7 +573,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${visualizer.model}" ></h5>
                                     </div>
                                     <div class="modal-footer">
@@ -599,7 +599,6 @@
                 Wyposażenie:
             </div>
             <div class="col-lg-1 col-md-1">
-
                 <form action="#" th:action="@{/sala/{salaId}/wyposazenieAdd (salaId = ${sala.salaId})}" th:object="${sala}" method="get">
                     <button type="submit" class="btn btn-primary">Dodaj</button>
                 </form>
@@ -648,7 +647,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${wyposazenie.rolety}" ></h5>
                                     </div>
                                     <div class="modal-footer">
@@ -719,7 +718,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord: ?</p>
+                                        <p>Czy na pewno chcesz usunąć nastepujacy rekord?</p>
                                         <h5 th:text="${zlacze.nazwa}" ></h5>
                                     </div>
                                     <div class="modal-footer">
