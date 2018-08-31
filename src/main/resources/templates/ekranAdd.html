@@ -21,7 +21,7 @@
             <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
         </div>
 
-        <input type="hidden" th:field="*{ekranId}" th:class="${'form-control' + (#fields.hasErrors('ekranId') ? ' is-invalid' : '')}"/>
+        <input type="hidden" th:field="*{ekranId}" th:class="${'form-control' + (#fields.hasErrors('ekranId') ? ' is-invalid' : '')}" autocomplete="off">
         <div class="form-group">
 
             <label for="model">Model</label>
@@ -30,12 +30,12 @@
         <div class="form-group">
 
             <label for="wymiary">Wymiary</label>
-            <input type="text" th:field="*{wymiary}" th:class="${'form-control' + (#fields.hasErrors('wymiary') ? ' is-invalid' : '')}">
+            <input type="text" th:field="*{wymiary}" th:class="${'form-control' + (#fields.hasErrors('wymiary') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
 
             <label for="sterowanie">Sterowanie</label>
-            <input type="text" th:field="*{sterowanie}" th:class="${'form-control' + (#fields.hasErrors('sterowanie') ? ' is-invalid' : '')}">
+            <input type="text" th:field="*{sterowanie}" th:class="${'form-control' + (#fields.hasErrors('sterowanie') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="opis">Opis</label>
