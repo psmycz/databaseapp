@@ -20,7 +20,8 @@ public class Sala {
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            mappedBy = "sala")
+            mappedBy = "sala",
+            orphanRemoval = true)
     private Wyposazenie wyposazenie;
 
     @OneToMany(mappedBy = "sala",
@@ -28,7 +29,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Naprawa> naprawaList;
 
     @OneToMany(mappedBy = "sala",
@@ -36,7 +38,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Przylacze> przylaczeList;
 
     @OneToMany(mappedBy = "sala",
@@ -44,7 +47,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Zlacze> zlaczeList;
 
     @OneToMany(mappedBy = "sala",
@@ -52,7 +56,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Projektor> projektorList;
 
     @OneToMany(mappedBy = "sala",
@@ -60,7 +65,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Audio> audioList;
 
 
@@ -69,7 +75,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Ekran> ekranList;
 
     @OneToMany(mappedBy = "sala",
@@ -77,7 +84,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Tablica> tablicaList;
 
     @OneToMany(mappedBy = "sala",
@@ -85,7 +93,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Visualizer> visualizerList;
 
     @OneToMany(mappedBy = "sala",
@@ -93,7 +102,8 @@ public class Sala {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE,
                     CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+                    CascadeType.REFRESH},
+            orphanRemoval = true)
     private List<Automatyka> automatykaList;
 
    // dodatkowa funkcja

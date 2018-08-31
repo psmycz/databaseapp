@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Audio Add</title>
+    <title>Sala Add</title>
     <th:block th:include="layout/header"></th:block>
 </head>
 
@@ -13,19 +13,23 @@
 <th:block th:include="layout/navbar"></th:block>
 
 <div class="container">
-    <h4 class="float-left mt-2">Audio : Dodaj</h4>
-    <div class="clearfix"></div>
-    <form th:action="@{/sala/{salaId}/audioAdd(salaId = ${salaId})}" th:object="${audio}" action="#" method="post">
+    <h4 class="float-left mt-2">Sala : Dodaj</h4>
+    <form th:action="@{/salaAdd}" th:object="${sala}" action="#" method="post">
 
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
             <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
         </div>
 
-        <input type="hidden" th:field="*{audioId}" th:class="${'form-control' + (#fields.hasErrors('audioId') ? ' is-invalid' : '')}"/>
+        <input type="hidden" th:field="*{salaId}" th:class="${'form-control' + (#fields.hasErrors('salaId') ? ' is-invalid' : '')}"/>
         <div class="form-group">
 
-            <label for="typ">Typ</label>
-            <input type="text" th:field="*{typ}" th:class="${'form-control' + (#fields.hasErrors('typ') ? ' is-invalid' : '')}">
+            <label for="numer">numer</label>
+            <input type="number" th:field="*{numer}" th:class="${'form-control' + (#fields.hasErrors('numer') ? ' is-invalid' : '')}">
+        </div>
+        <div class="form-group">
+
+            <label for="budynek">budynek</label>
+            <input type="text" th:field="*{budynek}" th:class="${'form-control' + (#fields.hasErrors('budynek') ? ' is-invalid' : '')}">
         </div>
         <div class="form-group">
             <label for="opis">opis</label>

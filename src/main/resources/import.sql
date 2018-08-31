@@ -13,8 +13,8 @@ insert into przylacze (sala_id, nazwa, opis) values (3,'MAXBERT','sprawne');
 insert into przylacze (sala_id, nazwa) values (6,'MAXBERT,FLOORBOX');
 
 insert into naprawa (sala_id, data_naprawy, opis) values (1,'2012-12-12','wymiana lampy');
-insert into naprawa (sala_id, data_naprawy) values (1,SYSDATE());
-insert into naprawa (sala_id, data_naprawy, opis) values (4,SYSDATE(),'naprawa rolet');
+insert into naprawa (sala_id, data_naprawy) values (1,current_date);
+insert into naprawa (sala_id, data_naprawy, opis) values (4,current_date,'naprawa rolet');
 
 insert into ekran (sala_id, model, wymiary,sterowanie,opis) values (1,'AVERS','3m','przyciskami żaluzjowo-chwilowymi','4:3');
 insert into ekran (sala_id, model, wymiary,sterowanie,opis) values (2,'KRAFTMANN','4m',' przyciskami żaluzjowo-stałymi','4:3');
@@ -50,6 +50,6 @@ insert into projektor(sala_id,model,numer_seryjny,adres_ip,adres_mac,wersja_opro
 insert into projektor(sala_id,model,numer_seryjny,adres_ip,adres_mac,wersja_oprogr,opis) values (1,'EPSON EB925','PAWF290210L','1.1.1.2','ad:ad:ad:ad:ad:bd','1.4.521','opis');
 insert into projektor(sala_id,model,numer_seryjny,adres_ip,adres_mac,wersja_oprogr,opis) values (2,'EPSON EB-955WH','VSMK6901428','1.1.1.3','ad:ad:ad:ad:ad:cd','1.4.521',NULL);
 
-insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (1,5555,sysdate(),false,NULL);
-insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (1,24,sysdate(),true,NULL);
-insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (2,0,sysdate(),true,'no dziala');
+insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (1,5555,current_date,false,NULL);
+insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (1,24,current_date,true,NULL);
+insert into lampa (projektor_id,czas_pracy,data_kontroli,sprawna,opis) values (2,0,current_date,true,'no dziala');

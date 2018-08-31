@@ -112,6 +112,32 @@ public class HomeController {
     ////////////////////////////            CRUD AUDIO           ////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
+
+    @GetMapping(value = "/salaAdd")
+    public ModelAndView addSala(){
+        ModelAndView modelAndView = new ModelAndView();
+        Sala sala = new Sala();
+        modelAndView.addObject("sala",sala);
+        modelAndView.setViewName("salaAdd");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/salaAdd")
+    public ModelAndView saveSala(@Valid Sala sala){
+        salaService.saveSala(sala);
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/salaDelete/{salaId}")
+    public ModelAndView deleteSala(@PathVariable("salaId") int salaId){
+        Sala sala;
+        sala = salaService.findById(salaId);
+        salaService.deleteSala(sala);
+        return new ModelAndView("redirect:/");
+    }
+
+
     @GetMapping(value = "/sala/{salaId}/audioAdd")
     public ModelAndView addAudio(@PathVariable int salaId){
         ModelAndView modelAndView = new ModelAndView();
