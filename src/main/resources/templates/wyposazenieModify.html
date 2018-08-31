@@ -29,15 +29,15 @@
         </div>
         <div class="form-group">
             <label for="oswietlenie">Oświetlenie</label>
-            <input th:field="*{oswietlenie}" th:class="${'form-control' + (#fields.hasErrors('oswietlenie') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{oswietlenie}" th:class="${'form-control' + (#fields.hasErrors('oswietlenie') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="pilot">Pilot</label>
-            <input th:field="*{pilot}" th:class="${'form-control' + (#fields.hasErrors('pilot') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{pilot}" th:class="${'form-control' + (#fields.hasErrors('pilot') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="inne">Inne</label>
-            <input th:field="*{inne}" th:class="${'form-control' + (#fields.hasErrors('inne') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{inne}" th:class="${'form-control' + (#fields.hasErrors('inne') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="opis">Opis</label>

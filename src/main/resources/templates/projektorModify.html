@@ -35,15 +35,15 @@
         </div>
         <div class="form-group">
             <label for="AdresIp">Adres IP</label>
-            <input th:field="*{adresIp}" th:class="${'form-control' + (#fields.hasErrors('AdresIp') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{adresIp}" th:class="${'form-control' + (#fields.hasErrors('AdresIp') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="adresMac">Adres MAC</label>
-            <input th:field="*{adresMac}" th:class="${'form-control' + (#fields.hasErrors('AdresMac') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{adresMac}" th:class="${'form-control' + (#fields.hasErrors('AdresMac') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="wersjaOprogr">Wersja oprogramowania</label>
-            <input th:field="*{wersjaOprogr}" th:class="${'form-control' + (#fields.hasErrors('wersjaOprogr') ? ' is-invalid' : '')}"></input>
+            <input th:field="*{wersjaOprogr}" th:class="${'form-control' + (#fields.hasErrors('wersjaOprogr') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="opis">opis</label>

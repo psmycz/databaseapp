@@ -21,7 +21,7 @@
             <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
         </div>
 
-        <input type="hidden" th:field="*{ekranId}" th:class="${'form-control' + (#fields.hasErrors('ekranId') ? ' is-invalid' : '')}" autocomplete="off">
+        <input type="hidden" th:field="*{ekranId}" th:class="${'form-control' + (#fields.hasErrors('ekranId') ? ' is-invalid' : '')}" >
         <div class="form-group">
 
             <label for="model">Model</label>

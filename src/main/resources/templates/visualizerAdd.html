@@ -25,7 +25,7 @@
         <div class="form-group">
 
             <label for="model">Model</label>
-            <input type="text" th:field="*{model}" th:class="${'form-control' + (#fields.hasErrors('model') ? ' is-invalid' : '')}">
+            <input type="text" th:field="*{model}" th:class="${'form-control' + (#fields.hasErrors('model') ? ' is-invalid' : '')}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="opis">Opis</label>
